@@ -19,11 +19,14 @@ class Observer {
             enumerable: true,
             get () {
                 console.log('getter', val)
+                if (Dep.target) Dep.addSub(Dep.target)
                 return val
             },
             set (newValue) {
                 console.log('setter', newValue)
+                new Observer(newValue)
                 val = newValue
+                Dep.notify()
             }
         })
     }
