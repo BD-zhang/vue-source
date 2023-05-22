@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script src="./reactive.js"></script>
+<script type="text/javascript" src="./array.js"></script>
+<script type="text/javascript" src="./reactive.js"></script>
 <script>
     let obj = {
         a: 1,
         b: 2,
         c: {
             child: 3
-        }
+        },
+        arr: [1, 2, 3, 4]
     }
+    let arr = [1,2,3,4,5,6]
+    new Observer(arr)
     new Observer(obj)
 </script>
 <body>
