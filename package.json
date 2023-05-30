@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "babel-node --presets env vue-observer/observer.js",
+    "flow": "flow"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "flow-bin": "^0.207.0",
+    "flow-remove-types": "^2.207.0"
+  },
+  "dependencies": {
+    "flow.js": "^0.2.6"
+  }
+}

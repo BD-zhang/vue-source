@@ -19,14 +19,15 @@ class Observer {
             enumerable: true,
             get () {
                 console.log('getter', val)
-                if (Dep.target) Dep.addSub(Dep.target)
+                eventObj.listen(key, function (msg) {
+                    console.log('listen', msg)
+                })
                 return val
             },
             set (newValue) {
                 console.log('setter', newValue)
-                new Observer(newValue)
+                eventObj.trigger(key, newValue)
                 val = newValue
-                Dep.notify()
             }
         })
     }
