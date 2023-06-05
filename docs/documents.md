@@ -4,6 +4,7 @@
 4. https://github.com/snabbdom/snabbdom
 5. 调试源码 https://juejin.cn/post/6844903747009658888
 6. MVVM https://github.com/DMQ/mvvm
+7. observer dep watcher的关系 https://juejin.cn/post/6844904128028622861
 
 vue内部参考的文档：
 1. flow.js https://flow.org/en/docs/config/
