@@ -9,3 +9,6 @@
 vue内部参考的文档：
 1. flow.js https://flow.org/en/docs/config/
 2. snabbdom https://github.com/snabbdom/snabbdom/blob/master/README-zh_CN.md
+
+vue源码面试题
+1. https://juejin.cn/post/6972008739297558565

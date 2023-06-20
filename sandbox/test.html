@@ -7,7 +7,12 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app">{{data}}</div>
+  <div id="app">
+    <div class="test-class">
+      <p>{{data}}</p>
+      <span>{{data}}</span>
+    </div>
+  </div>
 </body>
 <script src="../vue.js/vue/dist/vue.js"></script>
 <script>
@@ -15,7 +20,15 @@
     el: '#app',
     data: {
       data: 1
-    }
+    },
+    created() {
+      console.log('tis', this.data)
+    },
+    methods: {
+      data () {
+        console.log('fuck')
+      }
+     },
   })
 
   
