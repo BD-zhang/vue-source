@@ -1,4 +1,4 @@
-## new Vue发生了什么
+# new Vue发生了什么
 首先在源码中找到这个构造函数，
 ```js
 function Vue (options) {
@@ -12,7 +12,7 @@ function Vue (options) {
 ```
 可以看到最后执行了一个初始化函数，接下来便分析下_init函数
 
-### this._init
+## this._init
 this._init方法挂载在vue原型链上，通过在index.js函数执行initMixin函数挂载
 ```js
 initLifecycle(vm)
@@ -30,16 +30,16 @@ if (vm.$options.el) {
 ```   
 该方法主要是进行一些配置的合并以及对实例进行各部分内容的初始化，接下来只从部分重点初始化函数开始分析
 
-#### initLifecycle
+### initLifecycle
 该方法主要初始化一些`_`一节`$`开头的变量
 
-#### initEvent
+### initEvent
 .......
 
-#### initRender
+### initRender
 在该方法中主要是暴露`_`以及`$`开头的`createElement`方法，后续就是调用`defineReactive`方法对数据进行响应式处理
 
-#### callHook
+### callHook
 可以看到目前为止，已经初始化了`lifecycle events render`等逻辑，接下来便是执行了`callHook(vm, 'beforeCreate')`
 ```js
 pushTarget() 
@@ -57,3 +57,28 @@ if (vm._hasHookEvent) {
 
 popTarget()
 ```
+该方法为执行对应生命周期函数，具体分析在**生命周期函数执行**
+
+### initInjections
+
+### initState
+```js
+export function initState (vm: Component) {
+  vm._watchers = []
+  const opts = vm.$options
+  if (opts.props) initProps(vm, opts.props)
+  if (opts.methods) initMethods(vm, opts.methods)
+  if (opts.data) {
+    initData(vm)
+  } else {
+    observe(vm._data = {}, true /* asRootData */)
+  }
+  if (opts.computed) initComputed(vm, opts.computed)
+  if (opts.watch && opts.watch !== nativeWatch) {
+    initWatch(vm, opts.watch)
+  }
+}
+```
+截至目前可以看到，vue是把对`props`、`methods`、`data`、`computed`、`watch`等内容的处理放在`beforeCreate`后`created`前的`initState`中，因此在`beforeCreate`生命周期内是无法获取对应的值
+
+#### initProps

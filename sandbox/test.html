@@ -1,36 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <div id="app">
     <div class="test-class">
-      <p>{{data}}</p>
-      <span>{{data}}</span>
+      <p>{{count}}</p>
+      <span>{{count}}</span>
+      <my-component string-data="aaaaaaa"/>
     </div>
   </div>
+  <div id="app2"></div>
 </body>
 <script src="../vue.js/vue/dist/vue.js"></script>
 <script>
-  const vm = new Vue({
-    el: '#app',
-    data: {
-      data: 1
+  const MyComponent = Vue.component('my-component', {
+    el: '#app2',
+    props: {
+      stringData: {
+        type: String,
+        default: 'test'
+      }
     },
     created() {
-      console.log('tis', this.data)
+      console.log('Created hook');
     },
+    mounted() {
+      console.log('Mounted hook');
+    }
+  });
+
+  const mixins = new Vue({
+    created() {
+      console.log('这是mixins的created')
+    }
+  })
+  const vm = new Vue({
+    el: '#app',
+    component: {
+      MyComponent
+    },
+    data: {
+      count: 1
+    },
+    beforeCreate() {
+      console.log('before111111111111111', this)
+      console.log('这是beforeCreated生命周期')
+      // this.consoleData()
+    },
+    created() {
+      console.log('这是created生命周期', this.count)
+      this.$on('hook:fuck', () => {
+        console.log('fuckcccc')
+      })
+      this.$on('hook:mounted', () => {
+        console.log('created中的mounted')
+      })
+    },
+    mounted() {
+      console.log('这是mounted生命周期')
+    },
+    mixins: mixins,
     methods: {
-      data () {
+      consoleData() {
         console.log('fuck')
       }
-     },
+    },
   })
-
-  
 </script>
+
 </html>
