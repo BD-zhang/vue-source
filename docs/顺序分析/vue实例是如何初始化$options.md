@@ -17,6 +17,15 @@ if (options && options._isComponent) {
 ```
 ## 非组件
 ### mergeOptions
+`mergeOptions`中先是标准化处理props inject directives，以便后续管理维护
+```js
+normalizeProps(child, vm)
+normalizeInject(child, vm)
+normalizeDirectives(child)
+```
+#### normalizeProps
+在vue中使用props，值可以为字符串数组以及对象，当`props`为数组类型时，其本质就是给每一个元素生成一个`{key: val, type: null}`的子对象，当`props`为对象类型时，会根据子对象生成一个新的键值对，根据子对象的值是否为对象类型来进行设值
+
 
 ### resolveConstructorOptions
 

@@ -23,11 +23,13 @@
   const MyComponent = Vue.component('my-component', {
     el: '#app2',
     props: {
-      stringData: {
+      stringData : {
         type: String,
         default: 'test'
-      }
+      },
+      testData: Object
     },
+    // props: ['string-data'],
     created() {
       console.log('Created hook');
     },
