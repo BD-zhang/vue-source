@@ -35,6 +35,11 @@
     },
     mounted() {
       console.log('Mounted hook');
+    },
+    render(h) {
+      return h('div', {
+        class: 'test'
+      })
     }
   });
 
