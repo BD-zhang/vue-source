@@ -54,8 +54,13 @@
     component: {
       MyComponent
     },
-    data: {
-      count: 1
+    // data: {
+    //   count: 1
+    // },
+    data () {
+      return {
+        count: 1
+      }
     },
     beforeCreate() {
       console.log('before111111111111111', this)
