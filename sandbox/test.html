@@ -9,11 +9,14 @@
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" class="test1" v-if="true">
     <div class="test-class">
       <p>{{count}}</p>
       <span>{{count}}</span>
-      <my-component string-data="aaaaaaa"/>
+      <!-- <my-component string-data="aaaaaaa"/> -->
+      <ul>
+        <li v-for="(item, index) in arr" :key="index">{{item}}</li>
+      </ul>
     </div>
   </div>
   <div id="app2"></div>
@@ -31,10 +34,10 @@
     },
     // props: ['string-data'],
     created() {
-      console.log('Created hook');
+      // console.log('Created hook');
     },
     mounted() {
-      console.log('Mounted hook');
+      // console.log('Mounted hook');
     },
     render(h) {
       return h('div', {
@@ -45,7 +48,7 @@
 
   const mixins = new Vue({
     created() {
-      console.log('这是mixins的created')
+      // console.log('这是mixins的created')
     }
   })
   const vm = new Vue({
@@ -59,30 +62,32 @@
     // },
     data () {
       return {
-        count: 1
+        count: 1,
+        data: {},
+        arr: [1,2,3]
       }
     },
     beforeCreate() {
-      console.log('before111111111111111', this)
-      console.log('这是beforeCreated生命周期')
+      // console.log('before111111111111111', this)
+      // console.log('这是beforeCreated生命周期')
       // this.consoleData()
     },
     created() {
-      console.log('这是created生命周期', this.count)
+      // console.log('这是created生命周期', this.count)
       this.$on('hook:fuck', () => {
-        console.log('fuckcccc')
+        // console.log('fuckcccc')
       })
       this.$on('hook:mounted', () => {
-        console.log('created中的mounted')
+        // console.log('created中的mounted')
       })
     },
     mounted() {
-      console.log('这是mounted生命周期')
+      // console.log('这是mounted生命周期')
     },
     mixins: mixins,
     methods: {
       consoleData() {
-        console.log('fuck')
+        // console.log('fuck')
       }
     },
   })
